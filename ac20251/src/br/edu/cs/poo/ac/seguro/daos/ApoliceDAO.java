@@ -1,10 +1,9 @@
 package br.edu.cs.poo.ac.seguro.daos;
 
 import br.edu.cs.poo.ac.seguro.entidades.Apolice;
-import br.edu.cs.poo.ac.seguro.entidades.Sinistro;
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 
-public class ApoliceDAO {
+public class ApoliceDAO extends DAOGenerico {
 	public ApoliceDAO() {
 		cadastro = new CadastroObjetos(Apolice.class);
 
