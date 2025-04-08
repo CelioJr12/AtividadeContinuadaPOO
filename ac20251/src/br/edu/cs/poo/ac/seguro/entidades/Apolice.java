@@ -19,12 +19,4 @@ public class Apolice {
         this.valorPremio = valorPremio;
         this.valorMaximoSegurado = valorMaximoSegurado;
     }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
 }
