@@ -1,7 +1,8 @@
 package br.edu.cs.poo.ac.seguro.testes;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
 import br.edu.cs.poo.ac.seguro.daos.SinistroDAO;
@@ -40,8 +41,8 @@ public class TesteSinistroDAO {
         sinistroExemplo.setValorSinistro(new BigDecimal("2000.00"));
         boolean resultado = dao.alterar(sinistroExemplo);
         assertTrue(resultado);
-        Sinistro buscado = dao.buscar(sinistroExemplo.getNumero());
-        assertEquals(new BigDecimal("2000.00"), buscado.getValorSinistro());
+        Sinistro alterado = dao.buscar(sinistroExemplo.getNumero());
+        assertEquals(new BigDecimal("2000.00"), alterado.getValorSinistro());
     }
 
     @Test
@@ -51,6 +52,13 @@ public class TesteSinistroDAO {
         boolean resultado = dao.excluir(sinistroExemplo.getNumero());
         assertTrue(resultado);
         Sinistro buscado = dao.buscar(sinistroExemplo.getNumero());
+        assertNull(buscado);
+    }
+    
+    @Test
+    public void teste05() {
+        dao.excluir(sinistroExemplo.getNumero());
+        Sinistro buscado = dao.buscar(sinistroExemplo.getNumero()); 
         assertNull(buscado);
     }
 }
