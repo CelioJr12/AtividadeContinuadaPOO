@@ -4,26 +4,29 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
 @Setter
+@RequiredArgsConstructor
+
 public class Sinistro implements Serializable {
+	private static final long serialVersionUID = 1L;
     private String numero;
+    @NonNull
     private Veiculo veiculo;
+    @NonNull
     private LocalDateTime dataHoraSinistro;
+    @NonNull
     private LocalDateTime dataHoraRegistro;
+    @NonNull
     private String usuarioRegistro;
+    @NonNull
     private BigDecimal valorSinistro;
+    @NonNull
     private TipoSinistro tipo;
 
-    public Sinistro(Veiculo veiculo, LocalDateTime dataHoraSinistro, LocalDateTime dataHoraRegistro, String usuarioRegistro, BigDecimal valorSinistro, TipoSinistro tipo) {
-        this.veiculo = veiculo;
-        this.dataHoraSinistro = dataHoraSinistro;
-        this.dataHoraRegistro = dataHoraRegistro;
-        this.usuarioRegistro = usuarioRegistro;
-        this.valorSinistro = valorSinistro;
-        this.tipo = tipo;
-    }
 
 }
