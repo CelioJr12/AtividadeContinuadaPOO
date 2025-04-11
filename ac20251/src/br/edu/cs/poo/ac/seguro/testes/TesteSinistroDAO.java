@@ -1,64 +1,84 @@
 package br.edu.cs.poo.ac.seguro.testes;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
 import br.edu.cs.poo.ac.seguro.daos.SinistroDAO;
 import br.edu.cs.poo.ac.seguro.entidades.Sinistro;
-import br.edu.cs.poo.ac.seguro.entidades.Veiculo;
 import br.edu.cs.poo.ac.seguro.entidades.TipoSinistro;
-import br.edu.cs.poo.ac.seguro.entidades.CategoriaVeiculo;
 
-public class TesteSinistroDAO {
-
-    private SinistroDAO dao = new SinistroDAO();
-    private Veiculo veiculoExemplo = new Veiculo("ABC1234", 2020, null, null, CategoriaVeiculo.BASICO);
-    private Sinistro sinistroExemplo = new Sinistro(veiculoExemplo, LocalDateTime.now(), LocalDateTime.now(), "usuarioTeste", new BigDecimal("1000.00"), TipoSinistro.COLISAO);
-
-    @Test
-    public void teste01() {
-        dao.excluir(sinistroExemplo.getNumero());
-        boolean resultado = dao.incluir(sinistroExemplo);
-        assertTrue(resultado);
-        Sinistro buscado = dao.buscar(sinistroExemplo.getNumero());
-        assertNotNull(buscado);
-    }
-
-    @Test
-    public void teste02() {
-        dao.excluir(sinistroExemplo.getNumero());
-        dao.incluir(sinistroExemplo);
-        boolean resultado = dao.incluir(sinistroExemplo);
-        assertFalse(resultado);
-    }
-
-    @Test
-    public void teste03() {
-        dao.excluir(sinistroExemplo.getNumero());
-        dao.incluir(sinistroExemplo);
-        sinistroExemplo.setValorSinistro(new BigDecimal("2000.00"));
-        boolean resultado = dao.alterar(sinistroExemplo);
-        assertTrue(resultado);
-        Sinistro alterado = dao.buscar(sinistroExemplo.getNumero());
-        assertEquals(new BigDecimal("2000.00"), alterado.getValorSinistro());
-    }
-
-    @Test
-    public void teste04() {
-        dao.excluir(sinistroExemplo.getNumero());
-        dao.incluir(sinistroExemplo);
-        boolean resultado = dao.excluir(sinistroExemplo.getNumero());
-        assertTrue(resultado);
-        Sinistro buscado = dao.buscar(sinistroExemplo.getNumero());
-        assertNull(buscado);
-    }
-    
-    @Test
-    public void teste05() {
-        dao.excluir(sinistroExemplo.getNumero());
-        Sinistro buscado = dao.buscar(sinistroExemplo.getNumero()); 
-        assertNull(buscado);
-    }
+public class TesteSinistroDAO extends TesteDAO{
+	private SinistroDAO dao = new SinistroDAO();
+	protected Class getClasse() {
+		return Sinistro.class;
+	}
+	
+	@Test
+	public void teste01() {
+		String numero = "00000000";
+		cadastro.incluir(new Sinistro(null, null, null, null, null, null), numero);
+		Sinistro si = dao.buscar(numero);
+		Assertions.assertNotNull(si); 
+	}
+	
+	@Test
+	public void teste02() {
+		String numero = "10000000";
+		cadastro.incluir(new Sinistro(null, null, null, null, null, null), numero);
+		Sinistro si = dao.buscar("11000000");
+		Assertions.assertNull(si);
+	}
+	
+	@Test
+	public void teste03() {
+		String numero = "20000000";
+		cadastro.incluir(new Sinistro(null, null, null, null, null, null), numero);
+		boolean ret = dao.excluir(numero);
+		Assertions.assertTrue(ret);
+	}
+	
+	@Test
+	public void teste04() {
+		String numero = "30000000";
+		cadastro.incluir(new Sinistro(null, null, null, null, null, null), numero);
+		boolean ret = dao.excluir("31000000");
+		Assertions.assertFalse(ret);
+	}
+	@Test
+	public void teste05() {
+		String numero = "40000000";		
+		boolean ret = dao.incluir(new Sinistro(null, null, null, null, null, null));		
+		Assertions.assertTrue(ret);
+		Sinistro si = dao.buscar(numero);
+		Assertions.assertNotNull(si);		
+	}
+	
+	@Test
+	public void teste06() {
+		String numero = "50000000";		
+		Sinistro si = new Sinistro(null, null, null, null, null, null);
+		cadastro.incluir(si, numero);
+		boolean ret = dao.incluir(si);
+		Assertions.assertFalse(ret);
+	}
+	@Test
+	public void teste07() {
+		String numero= "60000000";			
+		boolean ret = dao.alterar(new Sinistro(null, null, null, null, null, null));		
+		Assertions.assertFalse(ret);
+		Sinistro si = dao.buscar(numero);
+		Assertions.assertNull(si);		
+	}
+	
+	@Test
+	public void teste08() {
+		String numero = "70000000";			
+		Sinistro si = new Sinistro(null, null, null, null, null, null);
+		cadastro.incluir(si, numero);
+		si = new Sinistro(null, null, null, null, null, null);
+		boolean ret = dao.alterar(si);
+		Assertions.assertTrue(ret);
+	}
 }
