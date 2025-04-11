@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 
-public abstract class TesteDAO {
+public abstract class TesteDAO extends TesteMediator{
     protected CadastroObjetos cadastro;
     
     protected abstract Class<?> getClasse();
