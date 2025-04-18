@@ -8,6 +8,7 @@ import br.edu.cs.poo.ac.seguro.entidades.Apolice;
 
 public class TesteApoliceDAO extends TesteDAO{
 	private ApoliceDAO dao = new ApoliceDAO();
+	@SuppressWarnings({ "rawtypes" })
 	protected Class getClasse() {
 		return Apolice.class;
 	}

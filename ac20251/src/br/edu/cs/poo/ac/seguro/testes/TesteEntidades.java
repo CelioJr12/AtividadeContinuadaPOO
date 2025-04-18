@@ -11,7 +11,7 @@ import br.edu.cs.poo.ac.seguro.entidades.SeguradoEmpresa;
 import br.edu.cs.poo.ac.seguro.entidades.SeguradoPessoa;
 import br.edu.cs.poo.ac.seguro.entidades.TipoSinistro;
 
-public class TestesEntidades {
+public class TesteEntidades {
 	
 	@Test
 	public void teste01() {		

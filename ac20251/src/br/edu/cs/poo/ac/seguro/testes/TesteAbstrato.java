@@ -9,6 +9,7 @@ import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 public abstract class TesteAbstrato {
 	protected CadastroObjetos cadastro;
 	
+	@SuppressWarnings("rawtypes")
 	protected abstract Class getClasse();
 	
 	protected TesteAbstrato() {

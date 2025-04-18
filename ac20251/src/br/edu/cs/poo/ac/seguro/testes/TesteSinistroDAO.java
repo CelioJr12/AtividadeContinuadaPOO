@@ -11,6 +11,7 @@ import br.edu.cs.poo.ac.seguro.entidades.TipoSinistro;
 
 public class TesteSinistroDAO extends TesteDAO{
 	private SinistroDAO dao = new SinistroDAO();
+	@SuppressWarnings({ "rawtypes" })
 	protected Class getClasse() {
 		return Sinistro.class;
 	}

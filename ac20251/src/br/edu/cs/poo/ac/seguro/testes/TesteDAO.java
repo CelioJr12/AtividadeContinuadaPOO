@@ -9,7 +9,8 @@ import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 public abstract class TesteDAO extends TesteMediator{
     protected CadastroObjetos cadastro;
     
-    protected abstract Class<?> getClasse();
+    @SuppressWarnings("rawtypes")
+    protected abstract Class getClasse();
 
     protected TesteDAO() {
         cadastro = new CadastroObjetos(getClasse());
