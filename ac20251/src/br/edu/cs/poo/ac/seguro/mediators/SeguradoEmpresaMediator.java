@@ -13,6 +13,14 @@ public class SeguradoEmpresaMediator {
 		return instancia;
 	}
 	public String validarCnpj(String cnpj) {
+		
+		if (StringUtils.ehNuloOuBranco(cnpj)) {
+	        return "cpnj não pode ser vazio.";
+	    }
+	    if (!StringUtils.temSomenteNumeros(cnpj)) {
+	        return "cnpj deve conter apenas números.";
+	    }
+	    
 		return null;
 	}
 	public String validarFaturamento(double faturamento) {

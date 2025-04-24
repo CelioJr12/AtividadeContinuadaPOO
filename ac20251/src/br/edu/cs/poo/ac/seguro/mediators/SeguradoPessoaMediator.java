@@ -13,6 +13,14 @@ public class SeguradoPessoaMediator {
         return instancia;
     }
 	public String validarCpf(String cpf) {
+		
+		if (StringUtils.ehNuloOuBranco(cpf)) {
+	        return "cpf não pode ser vazio.";
+	    }
+	    if (!StringUtils.temSomenteNumeros(cpf)) {
+	        return "cpf deve conter apenas números.";
+	    }
+		
 		return null;
 	}
 	public String validarRenda(double renda) {
