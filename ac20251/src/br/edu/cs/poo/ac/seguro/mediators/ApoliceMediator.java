@@ -39,9 +39,6 @@ public class ApoliceMediator {
 	 *  que a apólice foi incluída com sucesso, o numero da apólice no retorno deve ser 
 	 *  o número da apólice incluída.
 	 * 
-	 * À clase Apolice, deve ser acrescentado (com seus respectivos get/set e presença
-	 * dele no construtor) o atributo LocalDate dataInicioVigencia.
-	 * 
 	 * O número da apólice é igual a:
 	 * Se cpfOuCnpj de dados for um CPF
 	 *     número da apólice  = ano atual + "000" + cpfOuCnpj + placa  
@@ -103,8 +100,6 @@ public class ApoliceMediator {
 	}
 	/*
 	 * A exclusão não é permitida quando: 
-	 * 1- O número for nulo ou branco.
-	 * 2- Não existir apólice com o número recebido.
 	 * 3- Existir sinistro cadastrado no mesmo ano 
 	 *    da apólice (comparar ano da data e hora do sinistro
 	 *    com ano da data de início de vigência da apólice) 
@@ -118,6 +113,14 @@ public class ApoliceMediator {
 	 *    equals na classe Veiculo.
 	 */
 	public String excluirApolice(String numero) {
+		
+		if(StringUtils.ehNuloOuBranco(numero)) {
+			return "Exclusão não permitida";
+		}
+		if(buscarApolice(numero) == null) {
+			return "Não existe Apólice";
+		}
+	
 		return null;
 	}
 	/*
