@@ -1,20 +1,22 @@
-package br.edu.cs.poo.ac.seguro.entidades;
+package br.edu.cs.poo.ac.seguro.mediators;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
-import br.edu.cs.poo.ac.seguro.entidades.CategoriaVeiculo;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
+@AllArgsConstructor
 public class DadosVeiculo {
-    private String placa;
-    private CategoriaVeiculo categoria;
-    private int anoFabricacao;
-    private BigDecimal valor;
-    private String cpfOuCnpj;
-    private boolean indicadorLocadora;
-    private LocalDate inicioVigencia;
+	private String cpfOuCnpj;
+	private String placa;
+	private int ano;
+	private BigDecimal valorMaximoSegurado;
+	private int codigoCategoria;
+	void setCodigoCategoria(int codigoCategoria) {
+		this.codigoCategoria = codigoCategoria;
+	}
+	void setAno(int ano) {
+		this.ano = ano;
+	}
 }
