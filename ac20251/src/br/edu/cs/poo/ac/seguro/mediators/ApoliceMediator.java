@@ -96,8 +96,12 @@ public class ApoliceMediator {
 	 * Ver os testes test19 e test20
 	 */
 	public Apolice buscarApolice(String numero) {
-		return null;
+		if (numero == null || numero.trim().isEmpty()) {
+			return null;
+		}
+		return daoApo.buscar(numero);
 	}
+	
 	/*
 	 * A exclusão não é permitida quando: 
 	 * 3- Existir sinistro cadastrado no mesmo ano 
