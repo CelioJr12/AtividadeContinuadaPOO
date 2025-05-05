@@ -92,41 +92,39 @@ public class ApoliceMediator {
 	public RetornoInclusaoApolice incluirApolice(DadosVeiculo dados) {
 		return null;
 	}
-	/*
-	 * Ver os testes test19 e test20
-	 */
 	public Apolice buscarApolice(String numero) {
 		if (numero == null || numero.trim().isEmpty()) {
 			return null;
 		}
 		return daoApo.buscar(numero);
 	}
-	
-	/*
-	 * A exclusão não é permitida quando: 
-	 * 3- Existir sinistro cadastrado no mesmo ano 
-	 *    da apólice (comparar ano da data e hora do sinistro
-	 *    com ano da data de início de vigência da apólice) 
-	 *    para o mesmo veículo (comparar o veículo do sinistro
-	 *    com o veículo da apólice usando equals na classe veículo,
-	 *    que deve ser implementado). Para obter os sinistros 
-	 *    cadastrados, usar o método buscarTodos do dao de sinistro, 
-	 *    implementado para contempar a questão da bonificação 
-	 *    no método de incluir apólice.
-	 *    É possível usar LOMBOK para implementação implicita do
-	 *    equals na classe Veiculo.
-	 */
 	public String excluirApolice(String numero) {
-		
-		if(StringUtils.ehNuloOuBranco(numero)) {
-			return "Exclusão não permitida";
-		}
-		if(buscarApolice(numero) == null) {
-			return "Não existe Apólice";
-		}
-	
-		return null;
+	    if (StringUtils.ehNuloOuBranco(numero)) {
+	        return "Exclusão não permitida";
+	    }
+
+	    Apolice apolice = buscarApolice(numero);
+	    if (apolice == null) {
+	        return "Não existe Apólice";
+	    }
+
+	    Veiculo veiculoApolice = apolice.getVeiculo();
+	    int anoVigencia = apolice.getDataInicioVigencia().getYear();
+
+	    Sinistro[] todosSinistros = daoSin.buscarTodos();
+	    if (todosSinistros != null) {
+	        for (Sinistro sinistro : todosSinistros) {
+	            int anoSinistro = sinistro.getDataHoraSinistro().getYear();
+	            if (anoSinistro == anoVigencia && sinistro.getVeiculo().equals(veiculoApolice)) {
+	                return "Exclusão não permitida";
+	            }
+	        }
+	    }
+
+	    boolean excluido = daoApo.excluir(numero);
+	    return excluido ? null : "Exclusão não permitida";
 	}
+
 	/*
 	 * Daqui para baixo estão SUGESTÕES de métodos que propiciariam
 	 * mais reuso e organização de código.
