@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 public class Sinistro implements Serializable {
 	private static final long serialVersionUID = 1L;
+	@NonNull
     private String numero;
     @NonNull
     private Veiculo veiculo;

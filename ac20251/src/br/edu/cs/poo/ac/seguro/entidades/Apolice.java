@@ -17,6 +17,7 @@ import lombok.NonNull;
 
 public class Apolice implements Serializable {
 	private static final long serialVersionUID = 1L;
+	@NonNull
     private String numero;
     @NonNull
     private Veiculo veiculo;

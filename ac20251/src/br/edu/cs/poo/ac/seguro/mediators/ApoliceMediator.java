@@ -18,13 +18,28 @@ import br.edu.cs.poo.ac.seguro.entidades.Sinistro;
 import br.edu.cs.poo.ac.seguro.entidades.Veiculo;
 
 public class ApoliceMediator {
+	
+	private static ApoliceMediator instancia;
 	private SeguradoPessoaDAO daoSegPes;
 	private SeguradoEmpresaDAO daoSegEmp;
 	private VeiculoDAO daoVel;
 	private ApoliceDAO daoApo;
 	private SinistroDAO daoSin;
 
-	private ApoliceMediator() {}
+	 private ApoliceMediator() {
+	        daoSegPes = new SeguradoPessoaDAO();
+	        daoSegEmp = new SeguradoEmpresaDAO();
+	        daoVel = new VeiculoDAO();
+	        daoApo = new ApoliceDAO();
+	        daoSin = new SinistroDAO();
+	    }
+
+	    public static ApoliceMediator getInstancia() {
+	        if (instancia == null) {
+	            instancia = new ApoliceMediator();
+	        }
+	        return instancia;
+	    }
 	
 	public RetornoInclusaoApolice incluirApolice(DadosVeiculo dados) {
 
@@ -66,7 +81,7 @@ public class ApoliceMediator {
 	    BigDecimal valorFranquia = calcularFranquia(valorPremio);
 
 	    
-	    Apolice apolice = new Apolice(veiculo, valorFranquia, valorPremio, dados.getValorMaximoSegurado(), LocalDate.now());
+	    Apolice apolice = new Apolice(numeroApolice, veiculo, valorFranquia, valorPremio, dados.getValorMaximoSegurado(), LocalDate.now());
 
 	    
 	    boolean sucesso = daoApo.incluir(apolice);
