@@ -12,7 +12,7 @@ public enum CategoriaVeiculo {
 		
 	private int codigo;
 	private String nome;
-	private PrecoAno[] precosAnos; //teste
+	private PrecoAno[] precosAnos;
 	private CategoriaVeiculo(int codigo, String nome, PrecoAno[] precosAnos) {
 		this.codigo = codigo;
 		this.nome = nome;

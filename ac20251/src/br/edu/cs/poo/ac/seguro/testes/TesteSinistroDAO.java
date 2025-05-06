@@ -3,6 +3,7 @@ package br.edu.cs.poo.ac.seguro.testes;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
 import br.edu.cs.poo.ac.seguro.daos.SinistroDAO;
@@ -19,7 +20,7 @@ public class TesteSinistroDAO extends TesteDAO{
 	@Test
 	public void teste01() {
 		String numero = "00000000";
-		cadastro.incluir(new Sinistro(null, null, null, null, null, null), numero);
+		cadastro.incluir(new Sinistro(numero, null, null, null, "12345601012023000001234567", BigDecimal.ZERO,null), numero);
 		Sinistro si = dao.buscar(numero);
 		Assertions.assertNotNull(si); 
 	}
@@ -27,7 +28,7 @@ public class TesteSinistroDAO extends TesteDAO{
 	@Test
 	public void teste02() {
 		String numero = "10000000";
-		cadastro.incluir(new Sinistro(null, null, null, null, null, null), numero);
+		cadastro.incluir(new Sinistro(numero, null, null, null, "12345601012023000001234567", BigDecimal.ZERO,null), numero);
 		Sinistro si = dao.buscar("11000000");
 		Assertions.assertNull(si);
 	}
@@ -35,7 +36,7 @@ public class TesteSinistroDAO extends TesteDAO{
 	@Test
 	public void teste03() {
 		String numero = "20000000";
-		cadastro.incluir(new Sinistro(null, null, null, null, null, null), numero);
+		cadastro.incluir(new Sinistro(numero, null, null, null, "12345601012023000001234567", BigDecimal.ZERO,null), numero);
 		boolean ret = dao.excluir(numero);
 		Assertions.assertTrue(ret);
 	}
@@ -43,14 +44,14 @@ public class TesteSinistroDAO extends TesteDAO{
 	@Test
 	public void teste04() {
 		String numero = "30000000";
-		cadastro.incluir(new Sinistro(null, null, null, null, null, null), numero);
+		cadastro.incluir(new Sinistro(numero, null, null, null, "12345601012023000001234567", BigDecimal.ZERO,null), numero);
 		boolean ret = dao.excluir("31000000");
 		Assertions.assertFalse(ret);
 	}
 	@Test
 	public void teste05() {
 		String numero = "40000000";		
-		boolean ret = dao.incluir(new Sinistro(null, null, null, null, null, null));		
+		boolean ret = dao.incluir(new Sinistro(numero, null, null, null, "12345601012023000001234567", BigDecimal.ZERO,null));		
 		Assertions.assertTrue(ret);
 		Sinistro si = dao.buscar(numero);
 		Assertions.assertNotNull(si);		
@@ -59,7 +60,7 @@ public class TesteSinistroDAO extends TesteDAO{
 	@Test
 	public void teste06() {
 		String numero = "50000000";		
-		Sinistro si = new Sinistro(null, null, null, null, null, null);
+		Sinistro si = new Sinistro(numero, null, null, null, "12345601012023000001234567", BigDecimal.ZERO,null);
 		cadastro.incluir(si, numero);
 		boolean ret = dao.incluir(si);
 		Assertions.assertFalse(ret);
@@ -67,7 +68,7 @@ public class TesteSinistroDAO extends TesteDAO{
 	@Test
 	public void teste07() {
 		String numero= "60000000";			
-		boolean ret = dao.alterar(new Sinistro(null, null, null, null, null, null));		
+		boolean ret = dao.alterar(new Sinistro(numero, null, null, null, "12345601012023000001234567", BigDecimal.ZERO,null));		
 		Assertions.assertFalse(ret);
 		Sinistro si = dao.buscar(numero);
 		Assertions.assertNull(si);		
@@ -76,9 +77,9 @@ public class TesteSinistroDAO extends TesteDAO{
 	@Test
 	public void teste08() {
 		String numero = "70000000";			
-		Sinistro si = new Sinistro(null, null, null, null, null, null);
+		Sinistro si = new Sinistro(numero, null, null, null, "12345601012023000001234567", BigDecimal.ZERO,null);
 		cadastro.incluir(si, numero);
-		si = new Sinistro(null, null, null, null, null, null);
+		si = new Sinistro(numero, null, null, null, "12345601012023000001234567", BigDecimal.ZERO,null);
 		boolean ret = dao.alterar(si);
 		Assertions.assertTrue(ret);
 	}
